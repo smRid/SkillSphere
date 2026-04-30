@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings. These polarized lenses reduce glare and protect your eyes from harmful UV rays. Lightweight frame ensures comfort during long wear. Available in multiple trendy colors.",
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=400&fit=crop",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Tropical Print Swim Shorts",
+    "brand": "BeachVibe",
+    "price": 25,
+    "rating": 4.5,
+    "stock": 15,
+    "description": "Vibrant tropical print swim shorts made from quick-dry fabric. Features an elastic waistband with drawstring for a secure fit. Perfect for beach days, pool parties, and summer adventures. Mesh lining for added comfort.",
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop",
+    "category": "Clothing"
+  },
+  {
+    "id": 3,
+    "name": "SPF 50 Sunscreen Lotion",
+    "brand": "GlowGuard",
+    "price": 12,
+    "rating": 4.8,
+    "stock": 20,
+    "description": "Broad-spectrum SPF 50 sunscreen lotion that provides superior protection against UVA and UVB rays. Water-resistant formula lasts up to 80 minutes. Lightweight, non-greasy texture absorbs quickly. Suitable for all skin types.",
+    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop",
+    "category": "Skincare"
+  },
+  {
+    "id": 4,
+    "name": "Inflatable Beach Ball Set",
+    "brand": "FunSplash",
+    "price": 8,
+    "rating": 4.3,
+    "stock": 30,
+    "description": "Colorful inflatable beach ball set perfect for summer fun at the beach or pool. Includes 3 beach balls in different sizes. Made from durable PVC material that resists punctures. Easy to inflate and deflate for convenient storage.",
+    "image": "https://images.unsplash.com/photo-1531299204812-e6d44d9a185c?w=600&h=400&fit=crop",
+    "category": "Beach Gear"
+  },
+  {
+    "id": 5,
+    "name": "Wide Brim Straw Hat",
+    "brand": "SunShade",
+    "price": 18,
+    "rating": 4.6,
+    "stock": 12,
+    "description": "Classic wide brim straw hat that provides excellent sun protection. Natural straw material keeps your head cool. Adjustable inner band fits most head sizes. Lightweight and foldable for easy packing on trips.",
+    "image": "https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d?w=600&h=400&fit=crop",
+    "category": "Accessories"
+  },
+  {
+    "id": 6,
+    "name": "Cooling Facial Mist Spray",
+    "brand": "GlowGuard",
+    "price": 10,
+    "rating": 4.4,
+    "stock": 25,
+    "description": "Refreshing cooling facial mist spray enriched with aloe vera and cucumber extract. Instantly hydrates and cools your skin on hot summer days. Travel-friendly size fits in any bag. Suitable for all skin types and can be used over makeup.",
+    "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&h=400&fit=crop",
+    "category": "Skincare"
+  },
+  {
+    "id": 7,
+    "name": "Portable Beach Towel",
+    "brand": "BeachVibe",
+    "price": 20,
+    "rating": 4.5,
+    "stock": 18,
+    "description": "Ultra-absorbent and quick-dry microfiber beach towel with vibrant summer designs. Sand-free technology means no more sandy towels. Compact and lightweight — rolls up small for easy carrying. Oversized dimensions for maximum comfort.",
+    "image": "https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=600&h=400&fit=crop",
+    "category": "Beach Gear"
+  },
+  {
+    "id": 8,
+    "name": "Summer Floral Dress",
+    "brand": "TropicStyle",
+    "price": 35,
+    "rating": 4.9,
+    "stock": 8,
+    "description": "Elegant floral summer dress made from breathable cotton blend fabric. Features a flattering A-line silhouette with adjustable spaghetti straps. Perfect for beach outings, brunches, and casual summer evenings. Machine washable for easy care.",
+    "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&h=400&fit=crop",
+    "category": "Clothing"
+  }
+]
