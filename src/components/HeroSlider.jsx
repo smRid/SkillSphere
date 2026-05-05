@@ -59,21 +59,74 @@ const stats = [
 export default function HeroSlider() {
   return (
     <section className="relative">
-      {/* Floating decorative blobs */}
+      {/* Floating product cards (decorative) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-10 -left-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl animate-float"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-10 h-72 w-72 rounded-full bg-secondary/20 blur-3xl animate-float"
-        style={{ animationDelay: "1.5s" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-1/3 right-1/3 h-40 w-40 rounded-full bg-accent/20 blur-3xl animate-float"
-        style={{ animationDelay: "3s" }}
-      />
+        className="pointer-events-none absolute inset-0 z-20 hidden lg:block"
+      >
+        {/* 🏆 Certificate earned */}
+        <motion.div
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute right-8 top-24 flex items-center gap-3 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 text-white shadow-2xl backdrop-blur-xl xl:right-16"
+        >
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-amber-400 to-pink-500 text-lg shadow-md">
+            🏆
+          </div>
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-white/70">
+              Certificate earned
+            </p>
+            <p className="font-display text-sm font-bold leading-tight">
+              React Mastery
+            </p>
+          </div>
+        </motion.div>
+
+        {/* 📈 Today's progress */}
+        <motion.div
+          animate={{ y: [0, 14, 0] }}
+          transition={{
+            duration: 6.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.4,
+          }}
+          className="absolute bottom-44 right-32 flex items-center gap-3 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 text-white shadow-2xl backdrop-blur-xl xl:right-48"
+        >
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 text-lg shadow-md">
+            📈
+          </div>
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-white/70">
+              Today&apos;s progress
+            </p>
+            <p className="font-display text-sm font-bold leading-tight">
+              +2.5 hours learned
+            </p>
+          </div>
+        </motion.div>
+
+        {/* 🟢 Live learners */}
+        <motion.div
+          animate={{ y: [0, -10, 0], rotate: [-3, 3, -3] }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.8,
+          }}
+          className="absolute right-4 top-1/2 flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-white shadow-2xl backdrop-blur-xl xl:right-12"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
+          </span>
+          <span className="text-sm font-semibold">
+            12,840 learners online
+          </span>
+        </motion.div>
+      </div>
 
       <Swiper
         modules={[Autoplay, EffectFade, Pagination, Navigation]}
