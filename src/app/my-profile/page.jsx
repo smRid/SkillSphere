@@ -144,7 +144,7 @@ export default function MyProfilePage() {
             {/* Actions */}
             <div className="flex flex-wrap gap-2">
               <Link
-                href="/my-profile/edit"
+                href="/my-profile/update"
                 className="btn btn-sm rounded-full btn-gradient"
               >
                 <HiPencilSquare className="h-4 w-4" />
@@ -210,7 +210,7 @@ export default function MyProfilePage() {
               Account details
             </h2>
             <Link
-              href="/my-profile/edit"
+              href="/my-profile/update"
               className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
             >
               Edit
