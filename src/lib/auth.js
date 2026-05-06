@@ -1,4 +1,5 @@
 import { betterAuth } from "better-auth";
+import { dash } from "@better-auth/infra";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 import { getDb } from "./mongo";
@@ -20,7 +21,14 @@ const createAuth = async () => {
       },
     },
     session: { expiresIn: 60 * 60 * 24 * 7 },
-    plugins: [nextCookies()],
+    plugins: [
+      dash({
+        apiKey: process.env.BETTER_AUTH_API_KEY,
+        apiUrl: process.env.BETTER_AUTH_API_URL,
+        kvUrl: process.env.BETTER_AUTH_KV_URL,
+      }),
+      nextCookies(),
+    ],
   });
 };
 

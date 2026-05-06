@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@better-auth/infra": "^0.2.5",
     "better-auth": "^1.2.7",
     "framer-motion": "^11.11.17",
     "mongodb": "^6.11.0",
