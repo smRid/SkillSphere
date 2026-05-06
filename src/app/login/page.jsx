@@ -32,7 +32,7 @@ function LoginForm() {
     e.preventDefault();
     if (busy) return;
     setBusy(true);
-    const tid = toast.loading("Signing you in…");
+    const tid = toast.loading("Signing you in...");
     try {
       const { error } = await signIn.email({
         email: form.email,
@@ -44,7 +44,7 @@ function LoginForm() {
         toast.error(error.message || "Invalid email or password");
         return;
       }
-      toast.success("Welcome back! 👋");
+      toast.success("Welcome back!");
       router.push(redirect);
       router.refresh();
     } catch (err) {
@@ -76,7 +76,7 @@ function LoginForm() {
             value={form.email}
             onChange={onChange}
             placeholder="you@example.com"
-            className="input input-bordered w-full rounded-xl bg-base-100 pl-11"
+            className="input input-bordered w-full rounded-lg bg-base-100 pl-11"
           />
         </div>
       </div>
@@ -90,12 +90,9 @@ function LoginForm() {
           >
             Password
           </label>
-          <Link
-            href="/forgot"
-            className="text-xs font-semibold text-primary hover:underline"
-          >
-            Forgot password?
-          </Link>
+          <span className="text-xs font-medium text-base-content/45">
+            Min 6 characters
+          </span>
         </div>
         <div className="relative">
           <HiLockClosed className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-base-content/50" />
@@ -108,8 +105,8 @@ function LoginForm() {
             autoComplete="current-password"
             value={form.password}
             onChange={onChange}
-            placeholder="••••••••"
-            className="input input-bordered w-full rounded-xl bg-base-100 pl-11 pr-11"
+            placeholder="Enter your password"
+            className="input input-bordered w-full rounded-lg bg-base-100 pl-11 pr-11"
           />
           <button
             type="button"
@@ -130,7 +127,7 @@ function LoginForm() {
       <button
         type="submit"
         disabled={busy}
-        className="btn btn-gradient mt-2 w-full rounded-full"
+        className="btn btn-gradient mt-2 min-h-12 w-full rounded-full"
       >
         {busy ? (
           <span className="loading loading-spinner loading-sm" />
@@ -161,7 +158,7 @@ export default function LoginPage() {
   return (
     <AuthShell
       title="Welcome back"
-      subtitle="Log in to continue learning."
+      subtitle="Sign in to continue your courses, saved lessons, and profile progress."
       footer={
         <>
           New to SkillSphere?{" "}

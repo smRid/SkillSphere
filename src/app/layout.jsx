@@ -13,7 +13,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "SkillSphere — Learn skills that shape your future",
+  title: "SkillSphere - Learn skills that shape your future",
   description:
     "Explore world-class courses, connect with mentors, and join a global community of lifelong learners.",
 };

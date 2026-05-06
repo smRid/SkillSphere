@@ -16,7 +16,9 @@ import {
   HiMoon,
   HiChevronDown,
   HiUser,
+  HiUserPlus,
   HiArrowRightOnRectangle,
+  HiArrowLeftOnRectangle,
   HiSparkles,
 } from "react-icons/hi2";
 import toast from "react-hot-toast";
@@ -144,20 +146,7 @@ export default function Navbar() {
             ) : session?.user ? (
               <UserDropdown user={session.user} onLogout={handleSignOut} />
             ) : (
-              <>
-                <Link
-                  href="/login"
-                  className="btn btn-ghost btn-sm rounded-full"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/register"
-                  className="btn btn-sm rounded-full btn-gradient"
-                >
-                  Register
-                </Link>
-              </>
+              <AuthButtons />
             )}
           </div>
 
@@ -214,11 +203,11 @@ export default function Navbar() {
                 ) : session?.user ? (
                   <div className="space-y-1">
                     <Link
-                      href="/dashboard"
+                      href="/my-profile"
                       className="flex items-center gap-3 rounded-xl px-3 py-3 text-base font-medium hover:bg-base-200"
                     >
                       <HiUser className="h-5 w-5" />
-                      Dashboard
+                      My profile
                     </Link>
                     <button
                       onClick={handleSignOut}
@@ -229,20 +218,7 @@ export default function Navbar() {
                     </button>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 gap-2">
-                    <Link
-                      href="/login"
-                      className="btn btn-outline btn-sm rounded-full"
-                    >
-                      Login
-                    </Link>
-                    <Link
-                      href="/register"
-                      className="btn btn-sm rounded-full btn-gradient"
-                    >
-                      Register
-                    </Link>
-                  </div>
+                  <AuthButtons mobile />
                 )}
               </div>
             </div>
@@ -250,6 +226,31 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+function AuthButtons({ mobile = false }) {
+  return (
+    <div className={mobile ? "grid gap-2" : "flex items-center gap-2"}>
+      <Link
+        href="/login"
+        className={`btn btn-outline rounded-full font-semibold ${
+          mobile ? "btn-md w-full" : "btn-sm"
+        }`}
+      >
+        <HiArrowLeftOnRectangle className="h-4 w-4" />
+        Login
+      </Link>
+      <Link
+        href="/register"
+        className={`btn btn-gradient rounded-full font-semibold shadow-lg shadow-primary/20 ${
+          mobile ? "btn-md w-full" : "btn-sm"
+        }`}
+      >
+        <HiUserPlus className="h-4 w-4" />
+        Register
+      </Link>
+    </div>
   );
 }
 
@@ -347,13 +348,13 @@ function UserDropdown({ user, onLogout }) {
               </p>
             </div>
             <Link
-              href="/dashboard"
+              href="/my-profile"
               onClick={() => setOpen(false)}
               className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-base-200"
               role="menuitem"
             >
               <HiUser className="h-4 w-4" />
-              Dashboard
+              My profile
             </Link>
             <button
               onClick={() => {

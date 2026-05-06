@@ -3,194 +3,119 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
+  HiAcademicCap,
+  HiArrowLeft,
+  HiCheckCircle,
   HiSparkles,
   HiUsers,
-  HiAcademicCap,
-  HiStar,
 } from "react-icons/hi2";
+
+const highlights = [
+  "Project-based courses",
+  "Mentor-led learning paths",
+  "Progress that follows you",
+];
 
 export default function AuthShell({ title, subtitle, children, footer }) {
   return (
-    <div className="grid min-h-[calc(100vh-4rem)] lg:grid-cols-2">
-      {/* Left: form */}
-      <div className="flex items-center justify-center px-4 py-14 md:px-8">
-        <div className="w-full max-w-md">
-          <Link href="/" className="inline-flex items-center gap-2">
-            <span
-              className="grid h-9 w-9 place-items-center rounded-xl text-white shadow-lg"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4)",
-              }}
-            >
-              <HiSparkles className="h-5 w-5" />
-            </span>
-            <span className="font-display text-xl font-extrabold tracking-tight">
-              Skill<span className="gradient-text">Sphere</span>
-            </span>
+    <section className="relative overflow-hidden bg-base-100">
+      <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-8 px-4 py-10 md:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)] lg:py-14">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="mx-auto w-full max-w-md"
+        >
+          <Link
+            href="/"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-base-content/70 transition-colors hover:text-primary"
+          >
+            <HiArrowLeft className="h-4 w-4" />
+            Back to home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mt-8"
-          >
-            <h1 className="font-display text-3xl font-extrabold leading-tight md:text-4xl">
-              {title}
-            </h1>
-            {subtitle && (
-              <p className="mt-2 text-base-content/70">{subtitle}</p>
-            )}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-8"
-          >
-            {children}
-          </motion.div>
-
-          {footer && (
-            <div className="mt-6 text-center text-sm text-base-content/70">
-              {footer}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Right: gradient hero — desktop only */}
-      <div className="relative hidden overflow-hidden lg:block">
-        {/* Photo */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&auto=format&fit=crop"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        {/* Animated gradient overlay */}
-        <div
-          className="absolute inset-0 animate-gradient-x bg-size-200 opacity-90 mix-blend-multiply"
-          style={{
-            backgroundImage:
-              "linear-gradient(120deg, #4c1d95, #831843, #0e7490, #4c1d95)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-        {/* Floating decorative blobs */}
-        <motion.div
-          aria-hidden
-          animate={{ y: [0, -16, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none absolute -top-12 -left-12 h-64 w-64 rounded-full bg-white/10 blur-3xl"
-        />
-        <motion.div
-          aria-hidden
-          animate={{ y: [0, 14, 0] }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="pointer-events-none absolute -bottom-10 -right-12 h-72 w-72 rounded-full bg-white/10 blur-3xl"
-        />
-
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-between p-10 text-white xl:p-14">
-          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest backdrop-blur-md">
-            <HiSparkles className="h-3.5 w-3.5" />
-            Where curiosity compounds
-          </span>
-
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-display text-4xl font-black leading-tight drop-shadow-lg xl:text-5xl"
-            >
-              Learn skills that{" "}
-              <span className="bg-gradient-to-r from-amber-300 via-pink-200 to-cyan-200 bg-clip-text text-transparent">
-                shape your future
+          <div className="rounded-lg border border-base-300 bg-base-100 p-6 shadow-xl shadow-primary/10 md:p-8">
+            <div className="mb-7">
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase text-primary">
+                <HiSparkles className="h-4 w-4" />
+                SkillSphere
               </span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-4 max-w-md text-white/85"
-            >
-              Join 100,000+ learners building real, portfolio-worthy skills with
-              expert-led courses and a community that pushes you forward.
-            </motion.p>
-
-            {/* Stat chips */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 grid grid-cols-3 gap-3"
-            >
-              <StatChip
-                icon={HiUsers}
-                value="100K+"
-                label="Learners"
-              />
-              <StatChip
-                icon={HiAcademicCap}
-                value="500+"
-                label="Courses"
-              />
-              <StatChip icon={HiStar} value="4.9" label="Avg rating" />
-            </motion.div>
-          </div>
-
-          {/* Testimonial */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-xl"
-          >
-            <div className="flex items-center gap-3">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://randomuser.me/api/portraits/women/65.jpg"
-                alt=""
-                className="h-10 w-10 rounded-full object-cover ring-2 ring-white/30"
-              />
-              <div>
-                <p className="text-sm font-semibold">Aisha Rahman</p>
-                <p className="text-xs text-white/70">
-                  Frontend Engineer · Berlin
+              <h1 className="mt-5 font-display text-3xl font-extrabold leading-tight text-base-content md:text-4xl">
+                {title}
+              </h1>
+              {subtitle && (
+                <p className="mt-2 leading-7 text-base-content/65">
+                  {subtitle}
                 </p>
+              )}
+            </div>
+
+            {children}
+
+            {footer && (
+              <div className="mt-6 text-center text-sm text-base-content/70">
+                {footer}
+              </div>
+            )}
+          </div>
+        </motion.div>
+
+        <motion.aside
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.08 }}
+          className="relative hidden min-h-[640px] overflow-hidden rounded-lg lg:block"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&auto=format&fit=crop"
+            alt="Learners collaborating in a classroom"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/45 to-slate-950/10" />
+          <div className="relative z-10 flex h-full min-h-[640px] flex-col justify-between p-10 text-white xl:p-12">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur-md">
+              <HiAcademicCap className="h-5 w-5 text-cyan-200" />
+              Learn today, build tomorrow
+            </div>
+
+            <div>
+              <h2 className="max-w-lg font-display text-5xl font-black leading-none">
+                Skills that turn into real outcomes.
+              </h2>
+              <p className="mt-5 max-w-md text-base leading-7 text-white/80">
+                Join a focused learning space for courses, mentors, and
+                consistent progress across your career goals.
+              </p>
+
+              <div className="mt-8 grid grid-cols-3 gap-3">
+                <Metric icon={HiUsers} value="100K+" label="Learners" />
+                <Metric icon={HiAcademicCap} value="500+" label="Courses" />
+                <Metric icon={HiSparkles} value="4.9" label="Rating" />
               </div>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-white/85">
-              &ldquo;The capstone projects got me my first job. I still come
-              back when I need to level up.&rdquo;
-            </p>
-          </motion.div>
-        </div>
+
+            <div className="grid gap-3 rounded-lg border border-white/15 bg-white/10 p-5 backdrop-blur-md">
+              {highlights.map((item) => (
+                <div key={item} className="flex items-center gap-3 text-sm">
+                  <HiCheckCircle className="h-5 w-5 shrink-0 text-cyan-200" />
+                  <span className="text-white/90">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.aside>
       </div>
-    </div>
+    </section>
   );
 }
 
-function StatChip({ icon: Icon, value, label }) {
+function Metric({ icon: Icon, value, label }) {
   return (
-    <div className="rounded-2xl border border-white/20 bg-white/10 px-3 py-3 backdrop-blur-md">
-      <div className="flex items-center gap-2">
-        <span className="grid h-7 w-7 place-items-center rounded-lg bg-white/15">
-          <Icon className="h-4 w-4" />
-        </span>
-        <p className="font-display text-lg font-extrabold">{value}</p>
-      </div>
-      <p className="mt-1 text-[11px] uppercase tracking-wider text-white/70">
+    <div className="rounded-lg border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+      <Icon className="h-5 w-5 text-cyan-200" />
+      <p className="mt-3 font-display text-2xl font-extrabold">{value}</p>
+      <p className="mt-1 text-xs font-semibold uppercase text-white/65">
         {label}
       </p>
     </div>

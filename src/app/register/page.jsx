@@ -8,7 +8,6 @@ import {
   HiUser,
   HiEnvelope,
   HiLockClosed,
-  HiPhoto,
   HiEye,
   HiEyeSlash,
   HiArrowRight,
@@ -24,7 +23,6 @@ export default function RegisterPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    image: "",
     password: "",
   });
   const [showPwd, setShowPwd] = useState(false);
@@ -41,13 +39,12 @@ export default function RegisterPage() {
       return;
     }
     setBusy(true);
-    const tid = toast.loading("Creating your account…");
+    const tid = toast.loading("Creating your account...");
     try {
       const { error } = await signUp.email({
         email: form.email,
         password: form.password,
         name: form.name,
-        image: form.image || undefined,
       });
       toast.dismiss(tid);
       if (error) {
@@ -67,7 +64,7 @@ export default function RegisterPage() {
   return (
     <AuthShell
       title="Create your account"
-      subtitle="Start learning skills that compound."
+      subtitle="Create your learner profile and start building practical skills today."
       footer={
         <>
           Already have an account?{" "}
@@ -108,19 +105,6 @@ export default function RegisterPage() {
           required
         />
 
-        {/* Photo URL (optional) */}
-        <Field
-          id="image"
-          name="image"
-          type="url"
-          label="Photo URL"
-          hint="Optional"
-          icon={HiPhoto}
-          placeholder="https://…"
-          value={form.image}
-          onChange={onChange}
-        />
-
         {/* Password */}
         <div>
           <label
@@ -143,8 +127,8 @@ export default function RegisterPage() {
               autoComplete="new-password"
               value={form.password}
               onChange={onChange}
-              placeholder="••••••••"
-              className="input input-bordered w-full rounded-xl bg-base-100 pl-11 pr-11"
+              placeholder="Create a password"
+              className="input input-bordered w-full rounded-lg bg-base-100 pl-11 pr-11"
             />
             <button
               type="button"
@@ -165,7 +149,7 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={busy}
-          className="btn btn-gradient mt-2 w-full rounded-full"
+          className="btn btn-gradient mt-2 min-h-12 w-full rounded-full"
         >
           {busy ? (
             <span className="loading loading-spinner loading-sm" />
@@ -195,7 +179,7 @@ export default function RegisterPage() {
           <Link href="/terms" className="underline hover:text-primary">
             Terms
           </Link>{" "}
-          &{" "}
+          and{" "}
           <Link href="/privacy" className="underline hover:text-primary">
             Privacy Policy
           </Link>
@@ -238,7 +222,7 @@ function Field({
           id={id}
           name={name}
           type={type}
-          className={`input input-bordered w-full rounded-xl bg-base-100 ${
+          className={`input input-bordered w-full rounded-lg bg-base-100 ${
             Icon ? "pl-11" : "pl-4"
           }`}
           {...rest}
