@@ -2,12 +2,17 @@ import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB_NAME || "skillsphere";
+const mongoUri = uri || "mongodb://127.0.0.1:27017";
 
-let client;
-if (!global._mongoClientPromise) {
-  client = new MongoClient(uri || "mongodb://127.0.0.1:27017");
-  global._mongoClientPromise = client.connect();
+if (!uri && process.env.NODE_ENV === "production") {
+  throw new Error("MONGODB_URI is required in production.");
 }
 
-export const getDb = async () => (await global._mongoClientPromise).db(dbName);
-export default global._mongoClientPromise;
+if (!global._mongoClient) {
+  global._mongoClient = new MongoClient(mongoUri, {
+    serverSelectionTimeoutMS: 10000,
+  });
+}
+
+export const getDb = async () => global._mongoClient.db(dbName);
+export default global._mongoClient;
