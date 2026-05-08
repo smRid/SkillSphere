@@ -37,22 +37,22 @@ A polished Next.js LMS-style course platform where learners can browse curated s
 
 ## Features
 
-| Feature | Description |
-| :-- | :-- |
-| **Course Catalog** | Browse 8 curated courses with pricing, ratings, instructors, categories, levels, tags, and student counts |
-| **Dynamic Homepage** | Hero slider, popular courses, trending carousel, learning tips, instructor highlights, and CTA section |
-| **Course Search & Filters** | Search by title and narrow courses by category or level with instant client-side filtering |
-| **Protected Course Details** | Course detail pages require authentication and redirect guests back after login |
+| Feature                      | Description                                                                                                |
+| :--------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| **Course Catalog**           | Browse 8 curated courses with pricing, ratings, instructors, categories, levels, tags, and student counts  |
+| **Dynamic Homepage**         | Hero slider, popular courses, trending carousel, learning tips, instructor highlights, and CTA section     |
+| **Course Search & Filters**  | Search by title and narrow courses by category or level with instant client-side filtering                 |
+| **Protected Course Details** | Course detail pages require authentication and redirect guests back after login                            |
 | **Detailed Curriculum View** | Each course includes hero metadata, instructor info, curriculum checklist, skill tags, and enrollment card |
-| **Better Auth Login** | Email/password registration and sign-in powered by Better Auth |
-| **Google Social Login** | One-click Google OAuth sign-in and sign-up support |
-| **Profile Management** | Protected profile page with account details, stats, sign-out, and editable name/photo URL |
-| **Session-Aware Navbar** | Responsive navbar with auth-aware actions, user dropdown, mobile menu, and theme toggle |
-| **Light/Dark Theme** | Custom DaisyUI `skillsphere` and `skillsphereDark` themes with localStorage persistence |
-| **Professional UI Motion** | Framer Motion page reveals, hover states, animated gradients, and Swiper-powered carousels |
-| **Legal Pages** | Privacy Policy and Terms pages built with readable prose styling |
-| **Responsive Design** | Mobile-first layouts for homepage, catalog, auth screens, profile pages, navbar, and footer |
-| **Vercel Ready** | Built with the Next.js App Router and prepared for production deployment on Vercel |
+| **Better Auth Login**        | Email/password registration and sign-in powered by Better Auth                                             |
+| **Google Social Login**      | One-click Google OAuth sign-in and sign-up support                                                         |
+| **Profile Management**       | Protected profile page with account details, stats, sign-out, and editable name/photo URL                  |
+| **Session-Aware Navbar**     | Responsive navbar with auth-aware actions, user dropdown, mobile menu, and theme toggle                    |
+| **Light/Dark Theme**         | Custom DaisyUI `skillsphere` and `skillsphereDark` themes with localStorage persistence                    |
+| **Professional UI Motion**   | Framer Motion page reveals, hover states, animated gradients, and Swiper-powered carousels                 |
+| **Legal Pages**              | Privacy Policy and Terms pages built with readable prose styling                                           |
+| **Responsive Design**        | Mobile-first layouts for homepage, catalog, auth screens, profile pages, navbar, and footer                |
+| **Vercel Ready**             | Built with the Next.js App Router and prepared for production deployment on Vercel                         |
 
 ---
 
@@ -60,20 +60,20 @@ A polished Next.js LMS-style course platform where learners can browse curated s
 
 <div align="center">
 
-| Technology | Purpose |
-| :--: | :-- |
-| **Next.js 15** | App Router, routing, server rendering, metadata, and deployment |
-| **React 19** | Component-driven user interface |
-| **Tailwind CSS 3** | Utility-first styling and responsive layouts |
-| **DaisyUI 4** | Theme tokens, component classes, light/dark theme support |
-| **Better Auth** | Authentication, sessions, sign-up, sign-in, and OAuth |
-| **MongoDB 6** | Production authentication database storage |
-| **MongoDB Adapter** | Better Auth database adapter |
-| **Framer Motion** | Page transitions, reveal animations, and micro-interactions |
-| **Swiper** | Hero slider and trending course carousel |
-| **React Icons** | Consistent icon system across navigation, cards, profile, and footer |
-| **React Hot Toast** | Toast notifications for auth, enrollment, profile, and UI feedback |
-| **Vercel** | Production deployment |
+|     Technology      | Purpose                                                              |
+| :-----------------: | :------------------------------------------------------------------- |
+|   **Next.js 15**    | App Router, routing, server rendering, metadata, and deployment      |
+|    **React 19**     | Component-driven user interface                                      |
+| **Tailwind CSS 3**  | Utility-first styling and responsive layouts                         |
+|    **DaisyUI 4**    | Theme tokens, component classes, light/dark theme support            |
+|   **Better Auth**   | Authentication, sessions, sign-up, sign-in, and OAuth                |
+|    **MongoDB 6**    | Production authentication database storage                           |
+| **MongoDB Adapter** | Better Auth database adapter                                         |
+|  **Framer Motion**  | Page transitions, reveal animations, and micro-interactions          |
+|     **Swiper**      | Hero slider and trending course carousel                             |
+|   **React Icons**   | Consistent icon system across navigation, cards, profile, and footer |
+| **React Hot Toast** | Toast notifications for auth, enrollment, profile, and UI feedback   |
+|     **Vercel**      | Production deployment                                                |
 
 </div>
 
@@ -167,15 +167,15 @@ Authentication is handled by Better Auth and mounted under:
 /api/auth/[...all]
 ```
 
-| Endpoint | Method | Purpose |
-| :-- | :-- | :-- |
-| `/api/auth` | `GET/POST/PATCH/PUT/DELETE` | Better Auth handler for auth operations |
-| `/api/auth/[...all]` | `GET/POST/PATCH/PUT/DELETE` | Catch-all Better Auth route for sessions, email auth, user updates, and OAuth |
-| `/api/auth/get-session` | `GET` | Fetch the current user session |
-| `/api/auth/sign-up/email` | `POST` | Create an account with email and password |
-| `/api/auth/sign-in/email` | `POST` | Sign in with email and password |
-| `/api/auth/sign-in/social` | `POST` | Start Google OAuth sign-in flow |
-| `/api/auth/update-user` | `POST/PATCH` | Update profile fields through Better Auth |
+| Endpoint                   | Method                      | Purpose                                                                       |
+| :------------------------- | :-------------------------- | :---------------------------------------------------------------------------- |
+| `/api/auth`                | `GET/POST/PATCH/PUT/DELETE` | Better Auth handler for auth operations                                       |
+| `/api/auth/[...all]`       | `GET/POST/PATCH/PUT/DELETE` | Catch-all Better Auth route for sessions, email auth, user updates, and OAuth |
+| `/api/auth/get-session`    | `GET`                       | Fetch the current user session                                                |
+| `/api/auth/sign-up/email`  | `POST`                      | Create an account with email and password                                     |
+| `/api/auth/sign-in/email`  | `POST`                      | Sign in with email and password                                               |
+| `/api/auth/sign-in/social` | `POST`                      | Start Google OAuth sign-in flow                                               |
+| `/api/auth/update-user`    | `POST/PATCH`                | Update profile fields through Better Auth                                     |
 
 ### Course Data
 
@@ -185,21 +185,21 @@ Course, instructor, and learning-tip data is loaded from a static JavaScript mod
 src/data/courses.js
 ```
 
-| Export | Purpose |
-| :-- | :-- |
-| `courses` | 8 course records with title, instructor, duration, rating, students, level, price, image, category, tags, and curriculum |
-| `instructors` | 4 instructor profiles with avatar, title, expertise, bio, student count, course count, and rating |
-| `learningTips` | 6 learning habit cards shown on the homepage |
-| `getPopularCourses()` | Returns top-rated courses for the homepage |
-| `getTrendingCourses()` | Returns trending courses for the carousel |
-| `getCourseById(id)` | Resolves a single course for protected detail pages |
-| `getCategories()` | Builds catalog filter options from course categories |
+| Export                 | Purpose                                                                                                                  |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------------------- |
+| `courses`              | 8 course records with title, instructor, duration, rating, students, level, price, image, category, tags, and curriculum |
+| `instructors`          | 4 instructor profiles with avatar, title, expertise, bio, student count, course count, and rating                        |
+| `learningTips`         | 6 learning habit cards shown on the homepage                                                                             |
+| `getPopularCourses()`  | Returns top-rated courses for the homepage                                                                               |
+| `getTrendingCourses()` | Returns trending courses for the carousel                                                                                |
+| `getCourseById(id)`    | Resolves a single course for protected detail pages                                                                      |
+| `getCategories()`      | Builds catalog filter options from course categories                                                                     |
 
 ### Client-Side Storage
 
-| Storage Key | Purpose |
-| :-- | :-- |
-| `ss-theme` | Persists the selected SkillSphere light/dark theme |
+| Storage Key | Purpose                                            |
+| :---------- | :------------------------------------------------- |
+| `ss-theme`  | Persists the selected SkillSphere light/dark theme |
 
 ---
 
@@ -277,21 +277,12 @@ The application is deployed on **Vercel**:
 
 **Live URL:** [https://skill-sphere-lms.vercel.app/](https://skill-sphere-lms.vercel.app/)
 
-For deployment:
-
-1. Add all production environment variables in Vercel project settings.
-2. Set `BETTER_AUTH_URL` to `https://skill-sphere-lms.vercel.app`.
-3. Set `NEXT_PUBLIC_BETTER_AUTH_URL` to `https://skill-sphere-lms.vercel.app`.
-4. Configure Google OAuth authorized origins and redirect/callback URLs for the production domain.
-5. Allow Vercel/production access in MongoDB Atlas Network Access.
-6. Redeploy after changing environment variables.
-
 ---
 
 <div align="center">
 
 **If you found this project useful, consider giving it a star.**
 
-Made using Next.js, React, Tailwind CSS, DaisyUI, Better Auth, MongoDB, Framer Motion, Swiper, React Hot Toast, and Vercel.
+Made using Next.js, React, Tailwind, Better Auth, MongoDB, Framer Motion and Vercel.
 
 </div>
