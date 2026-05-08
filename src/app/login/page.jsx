@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
@@ -12,18 +12,29 @@ import {
   HiArrowRight,
 } from "react-icons/hi2";
 
-import { signIn } from "@/lib/auth-client";
+import { signIn, useSession } from "@/lib/auth-client";
 import AuthShell from "@/components/AuthShell";
 import GoogleButton from "@/components/GoogleButton";
+import Loader from "@/components/Loader";
 
 function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
   const redirect = params.get("redirect") || "/";
+  const { data: session, isPending } = useSession();
+
+  useEffect(() => {
+    if (!isPending && session) {
+      router.replace(redirect);
+    }
+  }, [isPending, session, router, redirect]);
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPwd, setShowPwd] = useState(false);
   const [busy, setBusy] = useState(false);
+
+  if (isPending) return <Loader label="Checking session…" />;
+  if (session) return null;
 
   const onChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));

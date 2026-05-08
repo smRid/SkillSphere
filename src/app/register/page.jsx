@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -11,22 +11,35 @@ import {
   HiEye,
   HiEyeSlash,
   HiArrowRight,
+  HiPhoto,
 } from "react-icons/hi2";
 
-import { signUp } from "@/lib/auth-client";
+import { signUp, updateUser, useSession } from "@/lib/auth-client";
 import AuthShell from "@/components/AuthShell";
 import GoogleButton from "@/components/GoogleButton";
+import Loader from "@/components/Loader";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { data: session, isPending } = useSession();
+
+  useEffect(() => {
+    if (!isPending && session) {
+      router.replace("/");
+    }
+  }, [isPending, session, router]);
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
+    photo: "",
   });
   const [showPwd, setShowPwd] = useState(false);
   const [busy, setBusy] = useState(false);
+
+  if (isPending) return <Loader label="Checking session…" />;
+  if (session) return null;
 
   const onChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -46,11 +59,20 @@ export default function RegisterPage() {
         password: form.password,
         name: form.name,
       });
-      toast.dismiss(tid);
       if (error) {
+        toast.dismiss(tid);
         toast.error(error.message || "Could not create account");
         return;
       }
+      if (form.photo.trim()) {
+        const { error: updateErr } = await updateUser({ image: form.photo.trim() });
+        if (updateErr) {
+          toast.dismiss(tid);
+          toast.error(updateErr.message || "Could not save photo");
+          return;
+        }
+      }
+      toast.dismiss(tid);
       toast.success("Account created! Please log in.");
       router.push("/login");
     } catch (err) {
@@ -85,7 +107,7 @@ export default function RegisterPage() {
           label="Full name"
           icon={HiUser}
           autoComplete="name"
-          placeholder="Ada Lovelace"
+          placeholder="Your Full Name"
           value={form.name}
           onChange={onChange}
           required
@@ -103,6 +125,19 @@ export default function RegisterPage() {
           value={form.email}
           onChange={onChange}
           required
+        />
+
+        {/* Photo URL */}
+        <Field
+          id="photo"
+          name="photo"
+          type="url"
+          label="Profile photo URL"
+          icon={HiPhoto}
+          autoComplete="off"
+          placeholder="https://example.com/photo.jpg"
+          value={form.photo}
+          onChange={onChange}
         />
 
         {/* Password */}

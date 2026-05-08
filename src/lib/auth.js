@@ -1,5 +1,4 @@
 import { betterAuth } from "better-auth";
-import { dash } from "@better-auth/infra";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 import { getDb } from "./mongo";
@@ -13,7 +12,7 @@ const createAuth = async () => {
     database: mongodbAdapter(db),
     baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
     secret: process.env.BETTER_AUTH_SECRET,
-    emailAndPassword: { enabled: true, autoSignIn: true, minPasswordLength: 6 },
+    emailAndPassword: { enabled: true, autoSignIn: false, minPasswordLength: 6 },
     socialProviders: {
       google: {
         clientId: process.env.GOOGLE_CLIENT_ID,
@@ -21,14 +20,7 @@ const createAuth = async () => {
       },
     },
     session: { expiresIn: 60 * 60 * 24 * 7 },
-    plugins: [
-      dash({
-        apiKey: process.env.BETTER_AUTH_API_KEY,
-        apiUrl: process.env.BETTER_AUTH_API_URL,
-        kvUrl: process.env.BETTER_AUTH_KV_URL,
-      }),
-      nextCookies(),
-    ],
+    plugins: [nextCookies()],
   });
 };
 
