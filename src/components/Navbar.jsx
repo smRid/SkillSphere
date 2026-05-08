@@ -29,14 +29,21 @@ const navLinks = [
   { href: "/about", label: "About", icon: HiInformationCircle },
 ];
 
-export default function Navbar() {
+export default function Navbar({ initialSession = null }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { data: liveSession, isPending } = useSession();
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [theme, setTheme] = useState("skillsphere");
+  const [session, setSession] = useState(initialSession);
+
+  useEffect(() => {
+    if (!isPending) {
+      setSession(liveSession ?? null);
+    }
+  }, [isPending, liveSession]);
 
   // Blur-on-scroll
   useEffect(() => {
@@ -68,9 +75,11 @@ export default function Navbar() {
   };
 
   const handleSignOut = async () => {
+    setSession(null);
     await signOut();
     toast.success("Signed out");
     router.push("/");
+    router.refresh();
   };
 
   const isActive = (href) =>
@@ -135,9 +144,7 @@ export default function Navbar() {
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
 
           <div className="hidden md:flex items-center gap-2">
-            {isPending ? (
-              <div className="h-9 w-24 animate-pulse rounded-full bg-base-300/60" />
-            ) : session?.user ? (
+            {session?.user ? (
               <UserDropdown user={session.user} onLogout={handleSignOut} />
             ) : (
               <AuthButtons />
@@ -192,9 +199,7 @@ export default function Navbar() {
               })}
 
               <div className="mt-2 border-t border-base-300/60 pt-3">
-                {isPending ? (
-                  <div className="h-10 animate-pulse rounded-xl bg-base-300/60" />
-                ) : session?.user ? (
+                {session?.user ? (
                   <div className="space-y-1">
                     <Link
                       href="/my-profile"
