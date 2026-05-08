@@ -6,7 +6,7 @@ import {
   HiAcademicCap,
   HiArrowLeft,
   HiCheckCircle,
-  HiSparkles,
+  HiStar,
   HiUsers,
 } from "react-icons/hi2";
 
@@ -35,12 +35,8 @@ export default function AuthShell({ title, subtitle, children, footer }) {
           </Link>
 
           <div className="rounded-lg border border-base-300 bg-base-100 p-6 shadow-xl shadow-primary/10 md:p-8">
-            <div className="mb-7">
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase text-primary">
-                <HiSparkles className="h-4 w-4" />
-                SkillSphere
-              </span>
-              <h1 className="mt-5 font-display text-3xl font-extrabold leading-tight text-base-content md:text-4xl">
+            <div className="mb-7 text-center">
+              <h1 className="font-display text-xl font-extrabold leading-tight whitespace-nowrap text-base-content md:text-2xl">
                 {title}
               </h1>
               {subtitle && (
@@ -91,7 +87,7 @@ export default function AuthShell({ title, subtitle, children, footer }) {
               <div className="mt-8 grid grid-cols-3 gap-3">
                 <Metric icon={HiUsers} value="100K+" label="Learners" />
                 <Metric icon={HiAcademicCap} value="500+" label="Courses" />
-                <Metric icon={HiSparkles} value="4.9" label="Rating" />
+                <Metric icon={HiStar} value="4.9" label="Rating" />
               </div>
             </div>
 

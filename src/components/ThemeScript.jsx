@@ -3,8 +3,7 @@ export default function ThemeScript() {
     (function() {
       try {
         var stored = localStorage.getItem('ss-theme');
-        var prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored || (prefersDark ? 'skillsphereDark' : 'skillsphere');
+        var theme = stored || 'skillsphere';
         document.documentElement.setAttribute('data-theme', theme);
       } catch (e) {}
     })();

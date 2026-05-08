@@ -86,7 +86,6 @@ export default function RegisterPage() {
   return (
     <AuthShell
       title="Create your account"
-      subtitle="Create your learner profile and start building practical skills today."
       footer={
         <>
           Already have an account?{" "}

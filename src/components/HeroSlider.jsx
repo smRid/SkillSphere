@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { motion } from "framer-motion";
-import { HiArrowRight, HiPlay, HiStar, HiUsers, HiAcademicCap } from "react-icons/hi2";
+import { HiArrowRight, HiPlay } from "react-icons/hi2";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -49,11 +49,6 @@ const slides = [
   },
 ];
 
-const stats = [
-  { icon: HiUsers, value: "100K+", label: "Active Learners" },
-  { icon: HiAcademicCap, value: "500+", label: "Expert Courses" },
-  { icon: HiStar, value: "4.9", label: "Average Rating" },
-];
 
 export default function HeroSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -154,37 +149,6 @@ export default function HeroSlider() {
         </span>
       </div>
 
-      {/* Right-side stat panel */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 hidden lg:flex items-center pr-24 xl:pr-40">
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-          className="pointer-events-auto glass flex flex-col gap-6 rounded-2xl px-6 py-8"
-        >
-          {stats.map(({ icon: Icon, value, label }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-              className="flex items-center gap-4"
-            >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                <Icon className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="font-display text-xl font-extrabold gradient-text">
-                  {value}
-                </p>
-                <p className="text-[11px] font-medium text-base-content/60">
-                  {label}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
     </section>
   );
 }
