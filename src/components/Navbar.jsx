@@ -16,9 +16,7 @@ import {
   HiMoon,
   HiChevronDown,
   HiUser,
-  HiUserPlus,
   HiArrowRightOnRectangle,
-  HiArrowLeftOnRectangle,
   HiSparkles,
 } from "react-icons/hi2";
 import toast from "react-hot-toast";
@@ -238,7 +236,6 @@ function AuthButtons({ mobile = false }) {
           mobile ? "btn-md w-full" : "btn-sm"
         }`}
       >
-        <HiArrowLeftOnRectangle className="h-4 w-4" />
         Login
       </Link>
       <Link
@@ -247,7 +244,6 @@ function AuthButtons({ mobile = false }) {
           mobile ? "btn-md w-full" : "btn-sm"
         }`}
       >
-        <HiUserPlus className="h-4 w-4" />
         Register
       </Link>
     </div>
