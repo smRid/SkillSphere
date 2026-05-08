@@ -7,18 +7,13 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   HiCheckBadge,
-  HiEnvelope,
-  HiCalendar,
+  HiShieldCheck,
+  HiPencilSquare,
+  HiArrowRightOnRectangle,
   HiAcademicCap,
   HiTrophy,
   HiClock,
   HiSparkles,
-  HiLockClosed,
-  HiKey,
-  HiShieldCheck,
-  HiArrowRight,
-  HiPencilSquare,
-  HiArrowRightOnRectangle,
 } from "react-icons/hi2";
 import toast from "react-hot-toast";
 
@@ -116,28 +111,9 @@ export default function MyProfilePage() {
                 <h1 className="font-display text-2xl font-extrabold leading-tight md:text-3xl">
                   {user.name || "Welcome, learner"}
                 </h1>
-                <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-base-content/70">
-                  <span className="inline-flex items-center gap-1.5">
-                    <HiEnvelope className="h-4 w-4 text-primary" />
-                    {user.email}
-                  </span>
-                  {joined && (
-                    <span className="inline-flex items-center gap-1.5">
-                      <HiCalendar className="h-4 w-4 text-primary" />
-                      Joined {memberSince}
-                    </span>
-                  )}
-                  {user.emailVerified ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-600 ring-1 ring-emerald-500/20">
-                      <HiShieldCheck className="h-3.5 w-3.5" />
-                      Verified
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-semibold text-amber-600 ring-1 ring-amber-500/20">
-                      Unverified
-                    </span>
-                  )}
-                </div>
+                <p className="mt-1 text-sm text-base-content/70">
+                  {user.email}
+                </p>
               </div>
             </div>
 
@@ -163,40 +139,8 @@ export default function MyProfilePage() {
         </div>
       </motion.section>
 
-      {/* Stat tiles */}
-      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatTile
-          icon={HiAcademicCap}
-          value="0"
-          label="Courses enrolled"
-          gradient="from-violet-500 to-fuchsia-500"
-          delay={0.05}
-        />
-        <StatTile
-          icon={HiTrophy}
-          value="0"
-          label="Certificates earned"
-          gradient="from-amber-500 to-orange-500"
-          delay={0.1}
-        />
-        <StatTile
-          icon={HiClock}
-          value="0h"
-          label="Hours learned"
-          gradient="from-cyan-500 to-blue-500"
-          delay={0.15}
-        />
-        <StatTile
-          icon={HiSparkles}
-          value={memberSince}
-          label="Member since"
-          gradient="from-emerald-500 to-teal-500"
-          delay={0.2}
-        />
-      </section>
-
       {/* Lower grid */}
-      <section className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <section className="mt-8 grid items-start gap-6 lg:grid-cols-[1fr_1fr]">
         {/* Account details */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -205,18 +149,9 @@ export default function MyProfilePage() {
           transition={{ duration: 0.5 }}
           className="rounded-3xl border border-base-300/60 bg-base-100/80 p-6 shadow-sm backdrop-blur-sm md:p-8"
         >
-          <div className="flex items-center justify-between">
-            <h2 className="font-display text-xl font-extrabold">
-              Account details
-            </h2>
-            <Link
-              href="/my-profile/update"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-            >
-              Edit
-              <HiPencilSquare className="h-4 w-4" />
-            </Link>
-          </div>
+          <h2 className="font-display text-xl font-extrabold">
+            Account details
+          </h2>
 
           <dl className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2">
             <DetailRow label="Full name" value={user.name || "—"} />
@@ -261,53 +196,42 @@ export default function MyProfilePage() {
           </dl>
         </motion.div>
 
-        {/* Secure account */}
+        {/* Stat tiles */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="glass rounded-3xl p-6 md:p-8"
+          className="grid grid-cols-2 gap-4"
         >
-          <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-500 via-fuchsia-500 to-cyan-400 text-white shadow-md">
-              <HiLockClosed className="h-5 w-5" />
-            </span>
-            <div>
-              <h2 className="font-display text-lg font-extrabold">
-                Secure your account
-              </h2>
-              <p className="text-xs text-base-content/60">
-                A few small steps go a long way.
-              </p>
-            </div>
-          </div>
-
-          <ul className="mt-5 space-y-3">
-            <SecurityRow
-              icon={HiKey}
-              title="Update your password"
-              description="Use a unique passphrase you can remember."
-              href="/my-profile/security"
-            />
-            <SecurityRow
-              icon={HiShieldCheck}
-              title={user.emailVerified ? "Email verified" : "Verify your email"}
-              description={
-                user.emailVerified
-                  ? "Your email is confirmed and ready."
-                  : "Check your inbox for the verification link."
-              }
-              href="/my-profile/security"
-              done={user.emailVerified}
-            />
-            <SecurityRow
-              icon={HiSparkles}
-              title="Connect Google"
-              description="One-click sign-in for faster access."
-              href="/my-profile/security"
-            />
-          </ul>
+          <StatTile
+            icon={HiAcademicCap}
+            value="0"
+            label="Courses enrolled"
+            gradient="from-violet-500 to-fuchsia-500"
+            delay={0.05}
+          />
+          <StatTile
+            icon={HiTrophy}
+            value="0"
+            label="Certificates earned"
+            gradient="from-amber-500 to-orange-500"
+            delay={0.1}
+          />
+          <StatTile
+            icon={HiClock}
+            value="0h"
+            label="Hours learned"
+            gradient="from-cyan-500 to-blue-500"
+            delay={0.15}
+          />
+          <StatTile
+            icon={HiSparkles}
+            value={memberSince}
+            label="Member since"
+            gradient="from-emerald-500 to-teal-500"
+            delay={0.2}
+          />
         </motion.div>
       </section>
     </div>
@@ -352,28 +276,3 @@ function DetailRow({ label, value }) {
   );
 }
 
-function SecurityRow({ icon: Icon, title, description, href, done = false }) {
-  return (
-    <li>
-      <Link
-        href={href}
-        className="group flex items-start gap-3 rounded-2xl border border-base-300/60 bg-base-100/60 p-3 transition-colors hover:border-primary/40 hover:bg-primary/5"
-      >
-        <span
-          className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl ${
-            done
-              ? "bg-emerald-500/10 text-emerald-600"
-              : "bg-primary/10 text-primary"
-          }`}
-        >
-          <Icon className="h-5 w-5" />
-        </span>
-        <div className="flex-1">
-          <p className="text-sm font-semibold">{title}</p>
-          <p className="text-xs text-base-content/65">{description}</p>
-        </div>
-        <HiArrowRight className="mt-2 h-4 w-4 text-base-content/40 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
-      </Link>
-    </li>
-  );
-}
