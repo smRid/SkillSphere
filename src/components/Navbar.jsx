@@ -17,7 +17,6 @@ import {
   HiChevronDown,
   HiUser,
   HiArrowRightOnRectangle,
-  HiSparkles,
 } from "react-icons/hi2";
 import toast from "react-hot-toast";
 
@@ -87,20 +86,17 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2">
-          <motion.span
-            className="grid h-9 w-9 place-items-center rounded-xl text-white shadow-lg"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4)",
-              backgroundSize: "200% 200%",
-            }}
-            animate={{ backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ rotate: 12, scale: 1.05 }}
-          >
-            <HiSparkles className="h-5 w-5" />
-          </motion.span>
+        <Link href="/" className="group flex items-center gap-2.5">
+          <span className="grid h-10 w-11 place-items-center overflow-hidden">
+            <Image
+              src="/logo.png"
+              alt="SkillSphere logo"
+              width={54}
+              height={42}
+              priority
+              className="h-10 w-11 object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </span>
           <span className="font-display text-xl font-extrabold tracking-tight">
             Skill<span className="gradient-text">Sphere</span>
           </span>

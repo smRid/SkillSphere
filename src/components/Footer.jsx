@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import {
@@ -13,7 +14,6 @@ import {
   FiPhone,
   FiArrowRight,
 } from "react-icons/fi";
-import { HiSparkles } from "react-icons/hi2";
 
 const socials = [
   { href: "https://twitter.com", icon: FiTwitter, label: "Twitter" },
@@ -61,15 +61,15 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand + socials */}
           <div className="space-y-4">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span
-                className="grid h-9 w-9 place-items-center rounded-xl text-white shadow-lg"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4)",
-                }}
-              >
-                <HiSparkles className="h-5 w-5" />
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <span className="grid h-10 w-11 place-items-center overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="SkillSphere logo"
+                  width={54}
+                  height={42}
+                  className="h-10 w-11 object-contain transition-transform duration-300 hover:scale-105"
+                />
               </span>
               <span className="font-display text-xl font-extrabold tracking-tight">
                 Skill<span className="gradient-text">Sphere</span>

@@ -16,6 +16,11 @@ export const metadata = {
   title: "SkillSphere - Learn skills that shape your future",
   description:
     "Explore world-class courses, connect with mentors, and join a global community of lifelong learners.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
