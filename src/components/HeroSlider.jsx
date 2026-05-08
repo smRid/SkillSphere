@@ -1,15 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { motion } from "framer-motion";
 import { HiArrowRight, HiPlay, HiStar, HiUsers, HiAcademicCap } from "react-icons/hi2";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 const slides = [
   {
@@ -43,7 +42,7 @@ const slides = [
     subtitle:
       "Every course ends with a portfolio-worthy capstone. Ship real work, not another certificate that sits in a drawer.",
     image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&auto=format&fit=crop",
     gradient: "from-rose-900/85 via-amber-900/45 to-transparent",
     cta: { label: "Get Started Free", href: "/register" },
     secondary: { label: "See Curriculum", href: "/courses" },
@@ -57,85 +56,17 @@ const stats = [
 ];
 
 export default function HeroSlider() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <section className="relative">
-      {/* Floating product cards (decorative) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-20 hidden lg:block"
-      >
-        {/* 🏆 Certificate earned */}
-        <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-8 top-24 flex items-center gap-3 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 text-white shadow-2xl backdrop-blur-xl xl:right-16"
-        >
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-amber-400 to-pink-500 text-lg shadow-md">
-            🏆
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-white/70">
-              Certificate earned
-            </p>
-            <p className="font-display text-sm font-bold leading-tight">
-              React Mastery
-            </p>
-          </div>
-        </motion.div>
-
-        {/* 📈 Today's progress */}
-        <motion.div
-          animate={{ y: [0, 14, 0] }}
-          transition={{
-            duration: 6.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.4,
-          }}
-          className="absolute bottom-44 right-32 flex items-center gap-3 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 text-white shadow-2xl backdrop-blur-xl xl:right-48"
-        >
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 text-lg shadow-md">
-            📈
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-white/70">
-              Today&apos;s progress
-            </p>
-            <p className="font-display text-sm font-bold leading-tight">
-              +2.5 hours learned
-            </p>
-          </div>
-        </motion.div>
-
-        {/* 🟢 Live learners */}
-        <motion.div
-          animate={{ y: [0, -10, 0], rotate: [-3, 3, -3] }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.8,
-          }}
-          className="absolute right-4 top-1/2 flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-white shadow-2xl backdrop-blur-xl xl:right-12"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          <span className="text-sm font-semibold">
-            12,840 learners online
-          </span>
-        </motion.div>
-      </div>
-
       <Swiper
-        modules={[Autoplay, EffectFade, Pagination, Navigation]}
+        modules={[Autoplay, EffectFade]}
         effect="fade"
         fadeEffect={{ crossFade: true }}
         loop
         autoplay={{ delay: 5500, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        navigation
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="h-[560px] md:h-[620px] lg:h-[680px]"
       >
         {slides.map((s, i) => (
@@ -199,32 +130,58 @@ export default function HeroSlider() {
         ))}
       </Swiper>
 
-      {/* Stat strip — overlaps the slider bottom edge */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 -mb-10 flex justify-center px-4">
+      {/* Custom slide fraction pagination */}
+      <div className="absolute bottom-20 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
+        <div className="flex items-center gap-1.5">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                const swiper = document.querySelector(".swiper")?.swiper;
+                swiper?.slideToLoop(i);
+              }}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === activeIndex
+                  ? "w-8 bg-orange-500"
+                  : "w-2 bg-white/40 hover:bg-white/60"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <span className="text-xs font-bold tracking-wider text-white/90">
+          {String(activeIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Right-side stat panel */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 hidden lg:flex items-center pr-24 xl:pr-40">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="pointer-events-auto glass grid w-full max-w-4xl grid-cols-3 gap-2 rounded-2xl px-4 py-5 md:gap-6 md:px-8"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+          className="pointer-events-auto glass flex flex-col gap-6 rounded-2xl px-6 py-8"
         >
-          {stats.map(({ icon: Icon, value, label }) => (
-            <div
+          {stats.map(({ icon: Icon, value, label }, i) => (
+            <motion.div
               key={label}
-              className="flex items-center justify-center gap-3 text-center"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
+              className="flex items-center gap-4"
             >
-              <span className="hidden h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary md:grid">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Icon className="h-5 w-5" />
               </span>
-              <div className="text-left">
-                <p className="font-display text-xl font-extrabold gradient-text md:text-2xl">
+              <div>
+                <p className="font-display text-xl font-extrabold gradient-text">
                   {value}
                 </p>
-                <p className="text-[11px] font-medium text-base-content/60 md:text-xs">
+                <p className="text-[11px] font-medium text-base-content/60">
                   {label}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
