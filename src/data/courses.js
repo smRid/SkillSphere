@@ -48,7 +48,7 @@ export const courses = [
     description:
       "Design beautiful, user-centered interfaces using Figma. Master design systems, prototyping, and usability testing.",
     image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1200&auto=format&fit=crop",
     category: "Design",
     tags: ["Figma", "UI", "UX", "Prototyping", "Design Systems"],
     curriculum: [
