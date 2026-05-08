@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect } from "react";
+import { use, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
@@ -35,10 +35,12 @@ export default function CourseDetailsPage({ params }) {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, isPending } = useSession();
+  const hasRedirected = useRef(false);
 
   // Auth guard
   useEffect(() => {
-    if (!isPending && !session) {
+    if (!isPending && !session && !hasRedirected.current) {
+      hasRedirected.current = true;
       toast.error("Please log in to view course details");
       const redirect = encodeURIComponent(pathname);
       router.replace(`/login?redirect=${redirect}`);
