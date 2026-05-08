@@ -87,17 +87,24 @@ export default function HeroSlider() {
                   initial={{ opacity: 0, y: 32 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="max-w-4xl text-white"
+                  className="max-w-2xl text-white"
                 >
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest backdrop-blur-md">
                     <span>{s.accent}</span>
                     {s.eyebrow}
                   </span>
 
-                  <h1
-                    className="mt-6 font-display text-3xl font-black whitespace-nowrap drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl"
-                  >
-                    {s.title}
+                  <h1 className="mt-6 font-display text-3xl font-black drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl">
+                    {( () => {
+                      const words = s.title.split(' ');
+                      const mid = Math.ceil(words.length / 2);
+                      return (
+                        <>
+                          <span className="block">{words.slice(0, mid).join(' ')}</span>
+                          <span className="block mt-6">{words.slice(mid).join(' ')}</span>
+                        </>
+                      );
+                    })()}
                   </h1>
 
                   <p className="mt-6 max-w-xl text-base text-white/85 md:text-lg">
