@@ -3,7 +3,7 @@
 export const courses = [
   {
     id: 1,
-    title: "Complete Web Development Bootcamp",
+    title: "Web Development Bootcamp",
     instructor: "John Doe",
     instructorAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
     duration: "20 hours",
